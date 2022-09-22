@@ -74,7 +74,7 @@ class LoginState extends State<Login> {
                           borderRadius:BorderRadius.circular(10.0),
                         )),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 10),
                   Container(
                     child: TextButton(
                         onPressed: () {

@@ -147,7 +147,7 @@ class DetailsState extends State<Details> {
                           Navigator.pop(context);
                           Navigator.pop(context);
                         },
-                        child: Text("Check Out"))
+                        child: Text("Continue Shopping"))
                   ],
                 );
               });

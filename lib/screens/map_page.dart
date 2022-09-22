@@ -1,16 +1,31 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'package:login/screens/login.dart';
+import 'package:login/utl/ConstantValue.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MapScreen extends StatefulWidget {
+  double totalPrice;
+
+  MapScreen(this.totalPrice);
+
   @override
   State<StatefulWidget> createState() {
-    return MapScreenState();
+    return MapScreenState(totalPrice);
   }
 }
 
 class MapScreenState extends State<MapScreen> {
+  double totalPrice;
+
+  MapScreenState(this.totalPrice);
+
   List<Marker> markers = [];
   TextEditingController noteTextEditingController = TextEditingController();
 
@@ -27,9 +42,10 @@ class MapScreenState extends State<MapScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            Container(
               height: MediaQuery.of(context).size.height * .50,
               width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(20),
               child: GoogleMap(
                   markers: markers.toSet(),
                   onTap: onMapTap,
@@ -40,22 +56,38 @@ class MapScreenState extends State<MapScreen> {
                       target: LatLng(31.9732595, 35.9121911), zoom: 15)),
             ),
             SizedBox(
-              height: (MediaQuery.of(context).size.height * .35) - 50,
-              width: MediaQuery.of(context).size.width,
+              height: (MediaQuery.of(context).size.height * .35) - 40.0,
+              width: MediaQuery.of(context).size.width-40.0,
               child: TextField(
                 keyboardType: TextInputType.multiline,
                 controller: noteTextEditingController,
                 decoration: InputDecoration(
-                    label: Text("Note"), hintText: "Insert Your Note Please"),
+                    prefixIcon: Icon(Icons.note),
+                    label: Text("Leave a Note"),
+                    hintText: "Insert Your Note Please",
+                    border:
+                        OutlineInputBorder(borderSide: BorderSide(width: 1))),
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: SizedBox(
-        height: (MediaQuery.of(context).size.height * .15) - 50,
+      bottomNavigationBar: Container(
+        height: (MediaQuery.of(context).size.height * .15) - 55.0,
         width: MediaQuery.of(context).size.width,
-        child: TextButton(onPressed: () {}, child: Text("Done")),
+        margin: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: Color(0xFF2596be),
+        ),
+        child: TextButton(
+            onPressed: () async {
+              Position postiton = await _determinePosition();
+              AddOrder(postiton.longitude, postiton.latitude);
+            },
+            child: Text("Done", style: TextStyle(
+              color: Colors.white,
+            ))),
       ),
     );
   }
@@ -88,5 +120,48 @@ class MapScreenState extends State<MapScreen> {
       markers[0] = Marker(markerId: MarkerId("1"), position: latLng);
     }
     setState(() {});
+  }
+
+  Future AddOrder(double lng, double lat) async {
+    final prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString(ConstantValue.ID) ?? "";
+
+    if (userId == "") {
+      Timer(
+          Duration(seconds: 3),
+          () => Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (BuildContext context) => Login())));
+    }
+    final response =
+        await http.post(Uri.parse("${ConstantValue.URL}AddOrder.php"), body: {
+      "Longitude": lng.toString(),
+      "Latitude": lat.toString(),
+      "Note": noteTextEditingController.text,
+      "TotalPrice": totalPrice.toString(),
+      "Id_users": userId,
+    });
+
+    if (response.statusCode == 200) {
+      var jsonBody = jsonDecode(response.body);
+      var result = jsonBody['result'];
+      if (result) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Your Order is ready"),
+                content: Text(jsonBody['msg']),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("OK"),
+                  )
+                ],
+              );
+            });
+      }
+    }
   }
 }

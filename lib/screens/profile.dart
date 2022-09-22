@@ -121,39 +121,46 @@ class ProfilePageState extends State<ProfilePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextButton(
-                      onPressed: () {
-                        if (nameController.text.isEmpty ) {
-                           _validateName = true;
-                       }else if (!isEmail(emailController.text)) {
-                          _validateEmail = true;
-                        } else if (phoneController.text.isEmpty) {
-                           _validatePhone = true;
-                           }
-                        else {
-                          UpdateProfile(Id);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Login()),
-                          );
-                        }
-                        setState(() {
-                        });
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Color(0xFF2596be)),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-
-                          ),
-                        ),
+                  Container(
+                      width: MediaQuery.of(context).size.width-35,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Color(0xFF2596be),
                       ),
-                      child: Text(
-                        "SAVE", style: TextStyle(color: Colors.white),
-                      )
-                  ),
+                      margin: EdgeInsets.symmetric( vertical: 20.0),
+                      child: TextButton(
+                          onPressed: ()async{
+                            if (nameController.text.isEmpty ) {
+                              _validateName = true;
+                            }else if (!isEmail(emailController.text)) {
+                              _validateEmail = true;
+                            } else if (phoneController.text.isEmpty) {
+                              _validatePhone = true;
+                            }
+                            else {
+                              UpdateProfile(Id);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Login()),
+                              );
+                            }
+                            setState(() {
+                            });
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Color(0xFF2596be)),
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            "SAVE", style: TextStyle(color: Colors.white),
+                          )
+                      )),
                 ],
               )
             ],

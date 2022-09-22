@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:login/model/cart.dart';
 import 'package:http/http.dart' as http;
 import 'package:login/screens/login.dart';
+import 'package:login/screens/map_page.dart';
 import 'package:login/utl/ConstantValue.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -55,9 +56,9 @@ class CartPageState extends State<CartPage> {
                   itemBuilder: (context, index) {
                     var price = cartList[index].price.toString();
                     return Container(
-                        height: 110,
+                        height: 130,
                         margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        EdgeInsets.symmetric(vertical: 10,horizontal: 15),
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -72,8 +73,8 @@ class CartPageState extends State<CartPage> {
                         child: Row(
                           children: [
                             Container(
-                              height: 150,
-                              width: 150,
+                              height: 130,
+                              width: 130,
                               margin: EdgeInsets.only(right: 15),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
@@ -83,7 +84,7 @@ class CartPageState extends State<CartPage> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10),
+                              padding: EdgeInsets.symmetric(vertical: 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
@@ -109,83 +110,93 @@ class CartPageState extends State<CartPage> {
                               ),
                             ),
                             Spacer(),
-                            Padding(
-                                padding: EdgeInsets.symmetric(vertical: 5),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Icon(Icons.delete, color: Colors.red),
-                                    Row(
-                                      children: [
-                                        Container(
-                                            padding: EdgeInsets.all(1),
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      color: Colors.grey
-                                                          .withOpacity(0.5),
-                                                      spreadRadius: 1,
-                                                      blurRadius: 5)
-                                                ]),
-                                            child: IconButton(
-                                              onPressed: () {
-                                                cartList[index].count = cartList[index].count + 1;
-                                                UpdateCart(cartList[index].count.toString(),cartList[index].id);
+                             Padding(
+                               padding:EdgeInsets.symmetric(vertical: 5),
+                               child:Column(
+                                 crossAxisAlignment: CrossAxisAlignment.end,
+                                 mainAxisAlignment:
+                                 MainAxisAlignment.spaceBetween,
+                                 children: [
+                                     IconButton(
+                                       onPressed: () {
+                                         deleteCart(cartList[index].id);
+                                         cartList.removeAt(index);
+                                         setState(() {});
+                                       },
+                                       icon: Icon(Icons.delete),
+                                       color: Colors.grey,
+                                       iconSize: 25,
+                                     ),
+                                   Row(
+                                         children: [
+                                           Container(
+                                               decoration: BoxDecoration(
+                                                   color: Colors.white,
+                                                   borderRadius:
+                                                   BorderRadius.circular(20),
+                                                   boxShadow: [
+                                                     BoxShadow(
+                                                         color: Colors.grey
+                                                             .withOpacity(0.5),
+                                                         spreadRadius: 1,
+                                                         blurRadius: 5)
+                                                   ]),
+                                               child: IconButton(
+                                                 onPressed: () {
+                                                   cartList[index].count = cartList[index].count + 1;
+                                                   UpdateCart(cartList[index].count.toString(),cartList[index].id);
+                                                   setState(() {});
+                                                 },
+                                                 icon: Icon(CupertinoIcons.plus),
+                                                 iconSize: 17,
+                                               )),
+                                           Container(
+                                               margin: EdgeInsets.symmetric(
+                                                   horizontal: 10),
+                                               child: Text(
+                                                 cartList[index].count.toString(),
+                                                 style: TextStyle(
+                                                     fontSize: 18,
+                                                     fontWeight: FontWeight.bold,
+                                                     color: Color(0xFF2596be)),
+                                               )),
+                                           Container(
+                                               decoration: BoxDecoration(
+                                                   color: Colors.white,
+                                                   borderRadius:
+                                                   BorderRadius.circular(20),
+                                                   boxShadow: [
+                                                     BoxShadow(
+                                                         color: Colors.grey
+                                                             .withOpacity(0.5),
+                                                         spreadRadius: 1,
+                                                         blurRadius: 5)
+                                                   ]),
+                                               child: IconButton(
+                                                 onPressed: () {
+                                                   if (cartList[index].count !=
+                                                       1) {
+                                                     cartList[index].count =
+                                                         cartList[index].count - 1;
+                                                     UpdateCart(cartList[index].count.toString(),cartList[index].id);
+                                                   } else {
+                                                     deleteCart(cartList[index].id);
+                                                     cartList.removeAt(index);
+                                                   }
+                                                   setState(() {
+                                                   });
+                                                 },
+                                                 icon: Icon(CupertinoIcons.minus),
+                                                 iconSize: 17,
+                                               )),
+                                         ],
+                                       )
 
 
-                                                setState(() {});
-                                              },
-                                              icon: Icon(CupertinoIcons.plus),
-                                              iconSize: 17,
-                                            )),
-                                        Container(
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Text(
-                                              cartList[index].count.toString(),
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Color(0xFF2596be)),
-                                            )),
-                                        Container(
-                                            padding: EdgeInsets.all(1),
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      color: Colors.grey
-                                                          .withOpacity(0.5),
-                                                      spreadRadius: 1,
-                                                      blurRadius: 5)
-                                                ]),
-                                            child: IconButton(
-                                              onPressed: () {
-                                                if (cartList[index].count !=
-                                                    1) {
-                                                  cartList[index].count =
-                                                      cartList[index].count - 1;
-                                                } else {
-                                                  deleteCart(cartList[index].id);
-                                                  cartList.removeAt(index);
-                                                }
-                                                setState(() {
-                                                });
-                                              },
-                                              icon: Icon(CupertinoIcons.minus),
-                                              iconSize: 17,
-                                            )),
-                                      ],
-                                    )
-                                  ],
-                                ))
+                                 ],
+                               ) ,
+                             )
+
                           ],
                         ));
                   }),
@@ -212,7 +223,12 @@ class CartPageState extends State<CartPage> {
             ),
             margin: EdgeInsets.symmetric(horizontal: 23.0, vertical: 10.0),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MapScreen(totalPrice)),
+                );
+              },
               child: Text(
                 "Next",
                 style: TextStyle(color: Colors.white),

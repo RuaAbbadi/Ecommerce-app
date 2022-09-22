@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login/screens/login.dart';
 import 'package:login/screens/main_page.dart';
 import 'package:login/screens/profile.dart';
 import 'package:login/screens/splash.dart';
@@ -19,6 +20,8 @@ class MoreScreen extends StatefulWidget {
 
 class MoreScreenState extends State<MoreScreen> {
   String name ="";
+  String email ="";
+  String phone="";
 
   @override
   void initState() {
@@ -43,7 +46,7 @@ class MoreScreenState extends State<MoreScreen> {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                           image: NetworkImage(
-                            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+                            "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
                           ),
                           fit: BoxFit.cover)),
                 ),
@@ -88,11 +91,12 @@ class MoreScreenState extends State<MoreScreen> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                ProfilePage()));
+                   onPressed: () {
+                   Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfilePage()),
+                        );
+                     setState(() {});
                       },
                       child: Text(
                         "Profile",
@@ -114,23 +118,22 @@ class MoreScreenState extends State<MoreScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: 100,
-                  height: 50,
-                  decoration: BoxDecoration(
+                    width: MediaQuery.of(context).size.width-50,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
                       color: Color(0xFF2596be),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Center(
-                      child: TextButton(
-                          onPressed: () {
-                            IsLogedOut();
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Splash()));
-                          },
-                          child: Text("Logout",
-                              style: TextStyle(color: Colors.white)))),
-                )
+                    ),
+                    margin: EdgeInsets.symmetric( vertical: 20.0),
+                    child: TextButton(
+                        onPressed: () {
+                          IsLogedOut();
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      Splash()));
+                        },
+                        child: Text("Logout", style: TextStyle(color: Colors.white))))
               ],
             ),
           )
@@ -157,10 +160,13 @@ class MoreScreenState extends State<MoreScreen> {
   Future GetUser() async {
     final prefs = await SharedPreferences.getInstance();
     String userName = prefs.getString(ConstantValue.Name) ?? "";
-
-
-      setState(() {
+    String userEmail = prefs.getString(ConstantValue.Email) ?? "";
+    String userPhone= prefs.getString(ConstantValue.Email) ?? "";
+    setState(() {
         name = userName;
+        email=userEmail;
+        phone=userPhone;
+
       });
 
   }

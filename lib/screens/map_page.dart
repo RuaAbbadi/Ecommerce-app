@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:login/model/order.dart';
 import 'package:login/screens/login.dart';
+import 'package:login/screens/order_details_page.dart';
+import 'package:login/screens/order_page.dart';
 import 'package:login/utl/ConstantValue.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,7 +26,6 @@ class MapScreen extends StatefulWidget {
 
 class MapScreenState extends State<MapScreen> {
   double totalPrice;
-
   MapScreenState(this.totalPrice);
 
   List<Marker> markers = [];
@@ -154,7 +156,10 @@ class MapScreenState extends State<MapScreen> {
                 actions: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                              MyOrderPage()));
                     },
                     child: Text("OK"),
                   )

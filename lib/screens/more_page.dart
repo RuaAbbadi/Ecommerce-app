@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/screens/login.dart';
 import 'package:login/screens/main_page.dart';
+import 'package:login/screens/order_details_page.dart';
+import 'package:login/screens/order_page.dart';
 import 'package:login/screens/profile.dart';
 import 'package:login/screens/splash.dart';
 import 'package:http/http.dart' as http;
@@ -105,7 +107,12 @@ class MoreScreenState extends State<MoreScreen> {
                       )),
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyOrderPage()),
+                      );
+                    },
                     child: Text("Orders",
                         style:
                             TextStyle(fontSize: 20, color: Color(0xFF2596be)))),

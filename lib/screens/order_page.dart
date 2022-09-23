@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/model/myoder.dart';
 import 'package:login/screens/login.dart';
+import 'package:login/screens/order_details_page.dart';
 import 'package:login/utl/ConstantValue.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,75 +31,99 @@ class MyOrderPageState extends State<MyOrderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - 250,
-            child: ListView.builder(
-             itemCount: ordersList.length,
-            itemBuilder: (context, index) {
-              var orderNumber= ordersList[index].Id;
-              return Container(
-                    height: 110,
-                    margin:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 5)
-                      ],
-                    ),
-                    child:  Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
+      body: SingleChildScrollView(
+        child:Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: ListView.builder(
+                  itemCount: ordersList.length,
+                  itemBuilder: (context, index) {
+                    var orderNumber= ordersList[index].Id;
+                    var totalPrice=ordersList[index].totalprice;
+                    return
+                      Container(
+                        height: 120,
+                        margin:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5)
+                          ],
+                        ),
+                        child:  Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                '#$orderNumber',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF2596be),
-                                ),
+                              Column(
+                                children: [
+                                  Text(
+                                    '#$orderNumber',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF2596be),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    ordersList[index].name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: Color(0xFF575E67),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(height: 10),
-                              Text(
-                                ordersList[index].name,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF575E67),
-                                ),
-                              ),
-                            ],
-                          ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Total Price: \$$totalPrice',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF2596be),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  TextButton(
+                                      onPressed: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => OrdersPage(ordersList[index].Id)),
+                                        );
+                                      },
+                                      child:Text("More Details",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.red,
+                                        ),)
+                                  ),
+                                ],
+                              )
 
-                          Text(
-                            ordersList[index].totalprice,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF575E67),
-                            ),
+                            ],
+
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-          ),
-        ],
-      ),
+                        ),
+                      );
+                  }),
+            ),
+          ],
+        ),
+      )
     );
   }
 

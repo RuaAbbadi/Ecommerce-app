@@ -41,92 +41,92 @@ class OrdersPageState extends State<OrdersPage> {
         body: Column(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height - 250,
-              child: ListView.builder(
-                  itemCount: orderList.length,
-                  itemBuilder: (context, index) {
-                    var price = orderList[index].price.toString();
-                   var itemsCount= orderList[index].count.toString();
-                    var totalPrice= orderList[index].totalprice.toString();
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height - 250,
+                child: ListView.builder(
+                    itemCount: orderList.length,
+                    itemBuilder: (context, index) {
+                      var price = orderList[index].price.toString();
+                      var itemsCount= orderList[index].count.toString();
+                      var totalPrice= orderList[index].totalprice.toString();
 
-                    return Container(
-                        height: 130,
-                        margin:
-                        EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5)
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 130,
-                              width: 130,
-                              margin: EdgeInsets.only(right: 15),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10.0),
-                                child: Image.network(
-                                  orderList[index].image,
+                      return Container(
+                          height: 130,
+                          margin:
+                          EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 5)
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 130,
+                                width: 130,
+                                margin: EdgeInsets.only(right: 15),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  child: Image.network(
+                                    orderList[index].image,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    orderList[index].name,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF2596be),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      orderList[index].name,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF2596be),
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    '\$$price',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: Color(0xFF575E67),
+                                    Text(
+                                      '\$$price',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color(0xFF575E67),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            Spacer(),
-                            Padding(
-                              padding:EdgeInsets.symmetric(vertical: 5),
-                              child:Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                     'Amount: $itemsCount',
-                                    style: TextStyle(
-                                      color:Color(0xFF2596be),
-                                      fontWeight: FontWeight.bold
+                              Spacer(),
+                              Padding(
+                                padding:EdgeInsets.symmetric(vertical: 5),
+                                child:Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Amount: $itemsCount',
+                                      style: TextStyle(
+                                          color:Color(0xFF2596be),
+                                          fontWeight: FontWeight.bold
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ) ,
-                            ),
-                          ],
-                        )
-                    );
-                  }
-                  )
+                                  ],
+                                ) ,
+                              ),
+                            ],
+                          )
+                      );
+                    }
+                )
             ),
           ],
         ),
@@ -139,9 +139,11 @@ class OrdersPageState extends State<OrdersPage> {
             ),
             margin: EdgeInsets.symmetric(horizontal: 23.0, vertical: 10.0),
             child: TextButton(
-              onPressed: () {
+              onPressed: () async{
                 deleteOrders();
                 deleteOrder();
+                Navigator.pop(context,'refresh');
+                Navigator.pop(context,'refresh');
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) =>MyOrderPage()),
@@ -152,7 +154,7 @@ class OrdersPageState extends State<OrdersPage> {
                 style: TextStyle(color: Colors.white),
               ),
             ))
-      );
+    );
   }
 
   Future GetOrders() async {
@@ -161,7 +163,7 @@ class OrdersPageState extends State<OrdersPage> {
     if (userId == "") {
       Timer(
           Duration(seconds: 3),
-          () => Navigator.of(context).pushReplacement(
+              () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (BuildContext context) => Login())));
     }
     final response = await http.post(
@@ -172,7 +174,7 @@ class OrdersPageState extends State<OrdersPage> {
         });
 
     if (response.statusCode == 200) {
-    var jsonBody = jsonDecode(response.body);
+      var jsonBody = jsonDecode(response.body);
       var order = jsonBody['order'];
 
       for (Map i in order) {
@@ -222,8 +224,6 @@ class OrdersPageState extends State<OrdersPage> {
 
         });
     if (response.statusCode == 200) {
-      print(orderId);
-
       return (jsonDecode(response.body));
 
     }

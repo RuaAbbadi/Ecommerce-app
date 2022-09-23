@@ -107,8 +107,8 @@ class MoreScreenState extends State<MoreScreen> {
                       )),
                 ),
                 TextButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: ()async {
+                     await Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => MyOrderPage()),
                       );

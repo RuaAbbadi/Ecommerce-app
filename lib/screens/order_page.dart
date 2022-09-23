@@ -21,6 +21,8 @@ class MyOrderPage extends StatefulWidget {
 class MyOrderPageState extends State<MyOrderPage> {
   List<MyOrder> ordersList = [];
 
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -44,10 +46,10 @@ class MyOrderPageState extends State<MyOrderPage> {
                     var totalPrice=ordersList[index].totalprice;
                     return
                       Container(
-                        height: 120,
+                        height: 110,
                         margin:
                         EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
@@ -75,7 +77,7 @@ class MyOrderPageState extends State<MyOrderPage> {
                                       color: Color(0xFF2596be),
                                     ),
                                   ),
-                                  SizedBox(height: 10),
+                                  SizedBox(height: 15),
                                   Text(
                                     ordersList[index].name,
                                     style: TextStyle(
@@ -96,13 +98,16 @@ class MyOrderPageState extends State<MyOrderPage> {
                                       color: Color(0xFF2596be),
                                     ),
                                   ),
-                                  SizedBox(height: 10),
+                                  SizedBox(height: 11),
                                   TextButton(
-                                      onPressed: (){
-                                        Navigator.push(
+                                      onPressed: ()async{
+                                    String refresh= await Navigator.push(
                                           context,
                                           MaterialPageRoute(builder: (context) => OrdersPage(ordersList[index].Id)),
                                         );
+                                    if(refresh=='refresh'){
+                                      GetOrder();
+                                    }
                                       },
                                       child:Text("More Details",
                                         style: TextStyle(
@@ -113,9 +118,7 @@ class MyOrderPageState extends State<MyOrderPage> {
                                   ),
                                 ],
                               )
-
                             ],
-
                           ),
                         ),
                       );
@@ -151,4 +154,5 @@ class MyOrderPageState extends State<MyOrderPage> {
       setState(() {});
     }
   }
+
 }

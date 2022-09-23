@@ -75,7 +75,7 @@ class MapScreenState extends State<MapScreen> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: (MediaQuery.of(context).size.height * .15) - 55.0,
+        height: (MediaQuery.of(context).size.height * .15) - 40.0,
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20.0),
         decoration: BoxDecoration(
@@ -156,6 +156,7 @@ class MapScreenState extends State<MapScreen> {
                 actions: [
                   TextButton(
                     onPressed: () {
+                      Navigator.pop(context);
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                               builder: (BuildContext context) =>

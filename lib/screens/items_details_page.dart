@@ -94,16 +94,16 @@ class DetailsState extends State<Details> {
             SizedBox(height: 20.0),
             Center(
                 child: Container(
-              width: MediaQuery.of(context).size.width - 50.0,
-              child: Text(
-                decription,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Color(0xFFB4BBB9),
-                ),
-              ),
-            ))
+                  width: MediaQuery.of(context).size.width - 50.0,
+                  child: Text(
+                    decription,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Color(0xFFB4BBB9),
+                    ),
+                  ),
+                ))
           ],
         ),
       ),
@@ -177,8 +177,8 @@ class DetailsState extends State<Details> {
 
     if (response.statusCode == 200) {
       var jsonBody = jsonDecode(response.body);
-      var images = jsonBody["Images"];
-      for (Map i in images) {
+      var Images = jsonBody["Images"];
+      for (Map i in Images) {
         ImageList.add(ImagesModel(i["Id"], i["Image"]));
       }
     }
@@ -191,7 +191,7 @@ class DetailsState extends State<Details> {
     if (userId == "") {
       Timer(
           Duration(seconds: 3),
-          () => Navigator.of(context).pushReplacement(
+              () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (BuildContext context) => Login())));
     }
     final response = await http.post(

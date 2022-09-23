@@ -130,7 +130,7 @@ class ProfilePageState extends State<ProfilePage> {
                       ),
                       margin: EdgeInsets.symmetric( vertical: 20.0),
                       child: TextButton(
-                          onPressed: ()async{
+                          onPressed: (){
                             if (nameController.text.isEmpty ) {
                               _validateName = true;
                             }else if (!isEmail(emailController.text)) {

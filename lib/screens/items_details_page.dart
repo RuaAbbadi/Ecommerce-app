@@ -33,14 +33,15 @@ class DetailsState extends State<Details> {
 
   DetailsState(this.id, this.name, this.price, this.decription);
 
-  List<ImagesModel> ImageList = [];
+  List<ImagesModel> ImageList = [
+
+  ];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getItemImages();
-    AddToCart();
   }
 
   @override
@@ -177,8 +178,8 @@ class DetailsState extends State<Details> {
 
     if (response.statusCode == 200) {
       var jsonBody = jsonDecode(response.body);
-      var Images = jsonBody["Images"];
-      for (Map i in Images) {
+      var images = jsonBody["Images"];
+      for (Map i in images) {
         ImageList.add(ImagesModel(i["Id"], i["Image"]));
       }
     }

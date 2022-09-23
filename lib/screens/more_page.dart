@@ -21,6 +21,7 @@ class MoreScreen extends StatefulWidget {
 }
 
 class MoreScreenState extends State<MoreScreen> {
+  String Id="";
   String name ="";
   String email ="";
   String phone="";
@@ -88,16 +89,19 @@ class MoreScreenState extends State<MoreScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 25, right: 25),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: TextButton(
-                   onPressed: () {
-                   Navigator.push(
+                   onPressed: ()async {
+                   String refresh=await  Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ProfilePage()),
+                          MaterialPageRoute(builder: (context) => ProfilePage(Id,name,email,phone)),
                         );
+                   if(refresh=='refresh'){
+                     GetUser();
+                   }
                      setState(() {});
                       },
                       child: Text(
@@ -156,7 +160,7 @@ class MoreScreenState extends State<MoreScreen> {
     final Name = await prefs.remove(ConstantValue.Name);
     final Phone = await prefs.remove(ConstantValue.Phone);
 
-    if (Email == "" && Id == "" && Name == "" && Phone == "") {
+    if (Id == "" && Email == ""  && Name == "" && Phone == "") {
       Timer(
           Duration(seconds: 3),
           () => Navigator.of(context).pushReplacement(
@@ -166,10 +170,12 @@ class MoreScreenState extends State<MoreScreen> {
 
   Future GetUser() async {
     final prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString(ConstantValue.ID) ?? "";
     String userName = prefs.getString(ConstantValue.Name) ?? "";
     String userEmail = prefs.getString(ConstantValue.Email) ?? "";
-    String userPhone= prefs.getString(ConstantValue.Email) ?? "";
+    String userPhone= prefs.getString(ConstantValue.Phone) ?? "";
     setState(() {
+        Id=userId;
         name = userName;
         email=userEmail;
         phone=userPhone;

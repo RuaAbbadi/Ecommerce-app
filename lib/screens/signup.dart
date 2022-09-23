@@ -125,6 +125,12 @@ class SignupState extends State<Signup> {
                   ),
                   SizedBox(height: 20),
                   Container(
+                    width: MediaQuery.of(context).size.width - 250.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Color(0xFF2596be),
+                    ),
                     child: TextButton(
                         onPressed: () {
                           _validateName=false;
@@ -164,7 +170,6 @@ class SignupState extends State<Signup> {
                           "Sign Up",
                           style: TextStyle(color: Colors.white),
                         )),
-                    width: 100,
                   ),
                 ],
               ),

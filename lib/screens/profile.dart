@@ -10,8 +10,16 @@ import 'package:http/http.dart' as http;
 
 
 class ProfilePage extends StatefulWidget {
+  String Id="";
+  String name = "";
+  String email = "";
+  String phone = "";
+
+
+  ProfilePage(this.Id, this.name, this.email, this.phone);
+
   @override
-  ProfilePageState createState() => ProfilePageState();
+  ProfilePageState createState() => ProfilePageState(Id,name,email,phone);
 }
 
 class ProfilePageState extends State<ProfilePage> {
@@ -24,16 +32,18 @@ class ProfilePageState extends State<ProfilePage> {
   bool _validatePhone = false;
 
   bool showPassword = false;
+  String Id="";
   String name = "";
   String email = "";
   String phone = "";
-  String Id="";
+
+
+  ProfilePageState(this.Id, this.name, this.email, this.phone);
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    GetUser();
   }
 
   @override
@@ -122,7 +132,7 @@ class ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                      width: MediaQuery.of(context).size.width-35,
+                      width: MediaQuery.of(context).size.width-300,
                       height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
@@ -161,6 +171,31 @@ class ProfilePageState extends State<ProfilePage> {
                             "SAVE", style: TextStyle(color: Colors.white),
                           )
                       )),
+                  Container(
+                      width: MediaQuery.of(context).size.width-300,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Color(0xFF2596be),
+                      ),
+                      margin: EdgeInsets.symmetric( vertical: 20.0),
+                      child: TextButton(
+                          onPressed: (){
+                             Navigator.pop(context);
+                            },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Color(0xFF2596be)),
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            "Cancel", style: TextStyle(color: Colors.white),
+                          )
+                      ))
                 ],
               )
             ],
@@ -169,20 +204,7 @@ class ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-  Future GetUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    String userId = prefs.getString(ConstantValue.ID) ?? "";
-    String userName = prefs.getString(ConstantValue.Name) ?? "";
-    String userEmail = prefs.getString(ConstantValue.Email) ?? "";
-    String userPhone = prefs.getString(ConstantValue.Phone) ?? "";
 
-    setState(() {
-      name = userName;
-      email = userEmail;
-      phone = userPhone;
-      Id=userId;
-    });
-  }
   bool isEmail(String em) {
     String p =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';

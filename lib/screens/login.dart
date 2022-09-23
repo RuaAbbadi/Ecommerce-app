@@ -21,21 +21,21 @@ class LoginState extends State<Login> {
   final password = TextEditingController();
   bool _validateEmail = false;
   bool _validatePassword = false;
-  bool notShowPassword=true;
-
+  bool notShowPassword = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+        body: SingleChildScrollView(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
               child: (Image.asset(
-                "images/login.png",
-                width: 200,
-                height: 200,
-              ))),
+            "images/login.png",
+            width: 200,
+            height: 200,
+          ))),
           Container(
             padding: EdgeInsets.all(10.0),
             child: Form(
@@ -46,10 +46,11 @@ class LoginState extends State<Login> {
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
                         hintText: "Email ",
-                        errorText: _validateEmail ? 'Enter a vaild Email' : null,
+                        errorText:
+                            _validateEmail ? 'Enter a vaild Email' : null,
                         border: OutlineInputBorder(
                           borderSide: BorderSide(width: 1),
-                          borderRadius:BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(10.0),
                         )),
                   ),
                   SizedBox(height: 20),
@@ -60,72 +61,76 @@ class LoginState extends State<Login> {
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock),
                         suffixIcon: GestureDetector(
-                          onTap: (){
-                              notShowPassword=!notShowPassword;
-                              setState(() {
-                            });
+                          onTap: () {
+                            notShowPassword = !notShowPassword;
+                            setState(() {});
                           },
-                          child: Icon(notShowPassword? Icons.visibility:Icons.visibility_off),
+                          child: Icon(notShowPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off),
                         ),
                         hintText: "Password ",
-                        errorText: _validatePassword ? 'Enter a vaild Password' : null,
+                        errorText:
+                            _validatePassword ? 'Enter a vaild Password' : null,
                         border: OutlineInputBorder(
                           borderSide: BorderSide(width: 30.0),
-                          borderRadius:BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(10.0),
                         )),
                   ),
                   SizedBox(height: 10),
                   Container(
+                    width: MediaQuery.of(context).size.width - 250.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Color(0xFF2596be),
+                    ),
+                    margin: EdgeInsets.symmetric(vertical: 20.0),
                     child: TextButton(
                         onPressed: () {
                           if (!isEmail(email.text)) {
                             _validateEmail = true;
-                          }
-                          else if(!validateStructure(password.text)){
-                            _validatePassword=true;
-                          }
-                          else{
+                          } else if (!validateStructure(password.text)) {
+                            _validatePassword = true;
+                          } else {
                             login();
                           }
-                          setState(() {}
-                          );
+                          setState(() {});
                         },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Color(0xFF2596be)),
+                          backgroundColor:
+                              MaterialStateProperty.all(Color(0xFF2596be)),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
-
                             ),
                           ),
                         ),
                         child: Text(
-                          "Log In", style: TextStyle(color: Colors.white),
-                        )
-                    ),
-                    width: 100,
+                          "Log In",
+                          style: TextStyle(color: Colors.white),
+                        )),
                   ),
                   TextButton(
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.only(top:30.0),
+                      padding: EdgeInsets.only(top: 30.0),
                     ),
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => Signup()),
                       );
-
                     },
-                    child: Text("You don't have account? Sign up",style:TextStyle(
-                      color: Color(0xFF575E67)
-                    )),),
+                    child: Text("You don't have account? Sign up",
+                        style: TextStyle(color: Color(0xFF575E67))),
+                  ),
                 ],
               ),
             ),
           )
         ],
       ),
-    );
+    ));
   }
 
   bool isEmail(String em) {
@@ -155,8 +160,8 @@ class LoginState extends State<Login> {
       var jsonBody = jsonDecode(response.body);
       print("jsonBody  = $jsonBody");
 
-      var result =jsonBody['result']; // get data from json
-      if(result){
+      var result = jsonBody['result']; // get data from json
+      if (result) {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString(ConstantValue.ID, jsonBody["Id"]);
 
@@ -166,29 +171,26 @@ class LoginState extends State<Login> {
 
         await prefs.setString(ConstantValue.Phone, jsonBody['Phone']);
 
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(BuildContext context)=>MainScreen()));
-
-
-      }else{
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) => MainScreen()));
+      } else {
         showDialog(
             context: context,
-            builder: (context){
+            builder: (context) {
               return AlertDialog(
-                title:Text("Warning"),
-                content:Text(jsonBody['msg']),
+                title: Text("Warning"),
+                content: Text(jsonBody['msg']),
                 actions: [
                   TextButton(
-                      onPressed: (){
-                        Navigator.pop(context);
-                      },
-                      child: Text("OK"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("OK"),
                   )
-              ],
+                ],
               );
-            }
-        );
+            });
       }
-
     }
   }
 }

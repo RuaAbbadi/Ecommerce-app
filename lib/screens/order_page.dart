@@ -46,10 +46,10 @@ class MyOrderPageState extends State<MyOrderPage> {
                     var totalPrice=ordersList[index].totalprice;
                     return
                       Container(
-                        height: 110,
+                        height: 130,
                         margin:
                         EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                        padding: EdgeInsets.symmetric(vertical: 15),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
@@ -65,7 +65,7 @@ class MyOrderPageState extends State<MyOrderPage> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                            MainAxisAlignment.spaceAround,
                             children: [
                               Column(
                                 children: [
@@ -77,7 +77,7 @@ class MyOrderPageState extends State<MyOrderPage> {
                                       color: Color(0xFF2596be),
                                     ),
                                   ),
-                                  SizedBox(height: 15),
+                                  SizedBox(height: 20),
                                   Text(
                                     ordersList[index].name,
                                     style: TextStyle(
@@ -98,7 +98,7 @@ class MyOrderPageState extends State<MyOrderPage> {
                                       color: Color(0xFF2596be),
                                     ),
                                   ),
-                                  SizedBox(height: 11),
+                                  SizedBox(height: 15),
                                   TextButton(
                                       onPressed: ()async{
                                     String refresh= await Navigator.push(

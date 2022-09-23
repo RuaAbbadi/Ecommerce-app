@@ -42,14 +42,12 @@ class OrdersPageState extends State<OrdersPage> {
           children: [
             Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height - 250,
+                height: MediaQuery.of(context).size.height-150,
                 child: ListView.builder(
                     itemCount: orderList.length,
                     itemBuilder: (context, index) {
                       var price = orderList[index].price.toString();
                       var itemsCount= orderList[index].count.toString();
-                      var totalPrice= orderList[index].totalprice.toString();
-
                       return Container(
                           height: 130,
                           margin:
@@ -201,7 +199,6 @@ class OrdersPageState extends State<OrdersPage> {
 
         });
     if (response.statusCode == 200) {
-      print(orderId);
       return (jsonDecode(response.body));
 
 

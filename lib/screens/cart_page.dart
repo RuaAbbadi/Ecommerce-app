@@ -95,7 +95,7 @@ class CartPageState extends State<CartPage> {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF2596be),
+                                      color: Color(0xFF575E67),
                                     ),
                                   ),
                                   Text(
@@ -103,7 +103,7 @@ class CartPageState extends State<CartPage> {
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
-                                      color: Color(0xFF575E67),
+                                      color: Color(0xFFB4BBB9),
                                     ),
                                   ),
                                 ],
@@ -158,7 +158,7 @@ class CartPageState extends State<CartPage> {
                                                  style: TextStyle(
                                                      fontSize: 18,
                                                      fontWeight: FontWeight.bold,
-                                                     color: Color(0xFF2596be)),
+                                                     color: Colors.black),
                                                )),
                                            Container(
                                                decoration: BoxDecoration(
@@ -206,10 +206,10 @@ class CartPageState extends State<CartPage> {
               child: Row(children: [
                 Text("Total Price",
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Color(0xFF575E67))),
+                        fontWeight: FontWeight.bold, color: Colors.black)),
                 Text('$totalPrice',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Color(0xFF2596be)))
+                        fontWeight: FontWeight.bold, color: Color(0xFF575E67)))
               ], mainAxisAlignment: MainAxisAlignment.spaceAround),
             ),
           ],
@@ -219,7 +219,7 @@ class CartPageState extends State<CartPage> {
             height: 45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Color(0xFF2596be),
+              color: Color(0xFFF7941F),
             ),
             margin: EdgeInsets.symmetric(horizontal: 23.0, vertical: 10.0),
             child: TextButton(

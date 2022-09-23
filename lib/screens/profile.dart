@@ -49,7 +49,9 @@ class ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF7941F),
+      ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
         child: GestureDetector(
@@ -136,7 +138,7 @@ class ProfilePageState extends State<ProfilePage> {
                       height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
-                        color: Color(0xFF2596be),
+                        color: Color(0xFFF7941F),
                       ),
                       margin: EdgeInsets.symmetric( vertical: 20.0),
                       child: TextButton(
@@ -159,7 +161,7 @@ class ProfilePageState extends State<ProfilePage> {
                             });
                           },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Color(0xFF2596be)),
+                            backgroundColor: MaterialStateProperty.all(Color(0xFFF7941F)),
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0),
@@ -176,7 +178,7 @@ class ProfilePageState extends State<ProfilePage> {
                       height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
-                        color: Color(0xFF2596be),
+                        color: Color(0xFFF7941F),
                       ),
                       margin: EdgeInsets.symmetric( vertical: 20.0),
                       child: TextButton(
@@ -184,7 +186,7 @@ class ProfilePageState extends State<ProfilePage> {
                              Navigator.pop(context);
                             },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Color(0xFF2596be)),
+                            backgroundColor: MaterialStateProperty.all(Color(0xFFF7941F)),
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0),

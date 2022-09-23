@@ -32,9 +32,9 @@ class LoginState extends State<Login> {
         children: [
           Center(
               child: (Image.asset(
-            "images/login.png",
-            width: 200,
-            height: 200,
+            "images/logo.png",
+            width: 250,
+            height: 250,
           ))),
           Container(
             padding: EdgeInsets.all(10.0),
@@ -75,7 +75,8 @@ class LoginState extends State<Login> {
                         border: OutlineInputBorder(
                           borderSide: BorderSide(width: 30.0),
                           borderRadius: BorderRadius.circular(10.0),
-                        )),
+                        ),
+                    ),
                   ),
                   SizedBox(height: 10),
                   Container(
@@ -99,7 +100,7 @@ class LoginState extends State<Login> {
                         },
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Color(0xFF2596be)),
+                              MaterialStateProperty.all(Color(0xFFF7941F)),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),

@@ -32,7 +32,9 @@ class MyOrderPageState extends State<MyOrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF7941F),
+      ),
       body: SingleChildScrollView(
         child:Column(
           children: [
@@ -61,11 +63,11 @@ class MyOrderPageState extends State<MyOrderPage> {
                           ],
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.symmetric(vertical: 10,horizontal: 60),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment:
-                            MainAxisAlignment.spaceAround,
+                            MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 children: [
@@ -74,16 +76,16 @@ class MyOrderPageState extends State<MyOrderPage> {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF2596be),
+                                      color: Colors.black,
                                     ),
                                   ),
                                   SizedBox(height: 20),
                                   Text(
                                     ordersList[index].name,
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.w700,
-                                      color: Color(0xFF575E67),
+                                      color: Color(0xFFF7941F),
                                     ),
                                   ),
                                 ],
@@ -91,11 +93,11 @@ class MyOrderPageState extends State<MyOrderPage> {
                               Column(
                                 children: [
                                   Text(
-                                    'Total Price: \$$totalPrice',
+                                    'Total Price : \$$totalPrice',
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF2596be),
+                                      color: Colors.black,
                                     ),
                                   ),
                                   SizedBox(height: 15),
@@ -113,7 +115,7 @@ class MyOrderPageState extends State<MyOrderPage> {
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.red,
+                                          color: Colors.blue,
                                         ),)
                                   ),
                                 ],

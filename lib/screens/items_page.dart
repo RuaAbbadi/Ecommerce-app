@@ -40,7 +40,7 @@ class ItemsState extends State<Items> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(catName)),
+        appBar: AppBar(title: Text(catName), backgroundColor: Color(0xFFF7941F),),
         body: ListView.builder(
             padding: EdgeInsets.all(10.0),
             itemCount: itemsList.length,
@@ -77,7 +77,7 @@ class ItemsState extends State<Items> {
                                 itemsList[index].name,
                                 style: TextStyle(
                                     fontSize: 22.0,
-                                    color: Color(0xFF2596be),
+                                    color: Colors.black,
                                     fontWeight: FontWeight.bold
                                 ),
                               )),

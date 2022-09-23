@@ -47,7 +47,7 @@ class DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(backgroundColor: Color(0xFFF7941F)),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -79,7 +79,7 @@ class DetailsState extends State<Details> {
                 fontSize: 22.0,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Varela',
-                color: Color(0xFF2596be),
+                color: Color(0xFFF7941F),
               ),
             ),
             SizedBox(height: 10.0),
@@ -158,7 +158,7 @@ class DetailsState extends State<Details> {
             height: 50.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Color(0xFF2596be),
+              color: Color(0xFFF7941F),
             ),
             margin: EdgeInsets.symmetric(vertical: 20.0),
             child: Center(

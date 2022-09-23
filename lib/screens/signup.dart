@@ -32,16 +32,18 @@ class SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF7941F),
+      ),
         body: SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
               child: (Image.asset(
-            "images/login.png",
-            width: 200,
-            height: 200,
+            "images/logo.png",
+            width: 250,
+            height: 250,
           ))),
           Container(
             padding: EdgeInsets.all(10.0),
@@ -159,7 +161,7 @@ class SignupState extends State<Signup> {
                         },
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Color(0xFF2596be)),
+                              MaterialStateProperty.all(Color(0xFFF7941F)),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),

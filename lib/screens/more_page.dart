@@ -63,7 +63,7 @@ class MoreScreenState extends State<MoreScreen> {
                       style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xFF2596be)),
+                          color: Color(0xFF575E67)),
                     ),
                     SizedBox(
                       height: 10,
@@ -95,19 +95,16 @@ class MoreScreenState extends State<MoreScreen> {
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: TextButton(
                    onPressed: ()async {
-                   String refresh=await  Navigator.push(
+                    Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => ProfilePage(Id,name,email,phone)),
                         );
-                   if(refresh=='refresh'){
-                     GetUser();
-                   }
                      setState(() {});
                       },
                       child: Text(
                         "Profile",
                         style:
-                            TextStyle(fontSize: 20, color: Color(0xFF2596be)),
+                            TextStyle(fontSize: 20, color: Color(0xFF575E67)),
                       )),
                 ),
                 TextButton(
@@ -119,7 +116,7 @@ class MoreScreenState extends State<MoreScreen> {
                     },
                     child: Text("Orders",
                         style:
-                            TextStyle(fontSize: 20, color: Color(0xFF2596be)))),
+                            TextStyle(fontSize: 20, color: Color(0xFF575E67)))),
               ],
             ),
           ),
@@ -133,7 +130,7 @@ class MoreScreenState extends State<MoreScreen> {
                     height: 45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      color: Color(0xFF2596be),
+                      color: Color(0xFFF7941F),
                     ),
                     margin: EdgeInsets.symmetric( vertical: 20.0),
                     child: TextButton(

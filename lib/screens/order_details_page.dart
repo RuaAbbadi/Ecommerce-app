@@ -37,7 +37,9 @@ class OrdersPageState extends State<OrdersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Color(0xFFF7941F),
+        ),
         body: Column(
           children: [
             Container(
@@ -88,7 +90,7 @@ class OrdersPageState extends State<OrdersPage> {
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
-                                        color: Color(0xFF2596be),
+                                        color: Color(0xFF575E67),
                                       ),
                                     ),
                                     Text(
@@ -96,7 +98,7 @@ class OrdersPageState extends State<OrdersPage> {
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
-                                        color: Color(0xFF575E67),
+                                        color: Color(0xFFB4BBB9),
                                       ),
                                     ),
                                   ],
@@ -111,9 +113,9 @@ class OrdersPageState extends State<OrdersPage> {
                                   MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Amount: $itemsCount',
+                                      '$itemsCount',
                                       style: TextStyle(
-                                          color:Color(0xFF2596be),
+                                          color:Color(0xFF575E67),
                                           fontWeight: FontWeight.bold
                                       ),
                                     ),
@@ -133,7 +135,7 @@ class OrdersPageState extends State<OrdersPage> {
             height: 45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Color(0xFF2596be),
+              color: Color(0xFFF7941F),
             ),
             margin: EdgeInsets.symmetric(horizontal: 23.0, vertical: 10.0),
             child: TextButton(
@@ -141,11 +143,6 @@ class OrdersPageState extends State<OrdersPage> {
                 deleteOrders();
                 deleteOrder();
                 Navigator.pop(context,'refresh');
-                Navigator.pop(context,'refresh');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>MyOrderPage()),
-                );
               },
               child: Text(
                 "Delete",

@@ -40,7 +40,9 @@ class MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF7941F),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -80,7 +82,7 @@ class MapScreenState extends State<MapScreen> {
         margin: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: Color(0xFF2596be),
+          color: Color(0xFFF7941F),
         ),
         child: TextButton(
             onPressed: () async {

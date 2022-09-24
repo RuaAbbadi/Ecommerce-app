@@ -43,9 +43,7 @@ class CartPageState extends State<CartPage> {
       totalPrice = totalPrice + (cartList[x].price * cartList[x].count);
     }
     return Scaffold(
-        appBar: fromMain ? null : AppBar(
-            backgroundColor: Color(0xFFF7941F)
-        ),
+        appBar: fromMain ? null : AppBar(backgroundColor: Color(0xFFF7941F)),
         body: Column(
           children: [
             Container(
@@ -60,7 +58,7 @@ class CartPageState extends State<CartPage> {
                     return Container(
                         height: 130,
                         margin:
-                        EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -112,93 +110,97 @@ class CartPageState extends State<CartPage> {
                               ),
                             ),
                             Spacer(),
-                             Padding(
-                               padding:EdgeInsets.symmetric(vertical: 5),
-                               child:Column(
-                                 crossAxisAlignment: CrossAxisAlignment.end,
-                                 mainAxisAlignment:
-                                 MainAxisAlignment.spaceBetween,
-                                 children: [
-                                     IconButton(
-                                       onPressed: () {
-                                         deleteCart(cartList[index].id);
-                                         cartList.removeAt(index);
-                                         setState(() {});
-                                       },
-                                       icon: Icon(Icons.delete),
-                                       color: Colors.grey,
-                                       iconSize: 25,
-                                     ),
-                                   Row(
-                                         children: [
-                                           Container(
-                                               decoration: BoxDecoration(
-                                                   color: Colors.white,
-                                                   borderRadius:
-                                                   BorderRadius.circular(20),
-                                                   boxShadow: [
-                                                     BoxShadow(
-                                                         color: Colors.grey
-                                                             .withOpacity(0.5),
-                                                         spreadRadius: 1,
-                                                         blurRadius: 5)
-                                                   ]),
-                                               child: IconButton(
-                                                 onPressed: () {
-                                                   cartList[index].count = cartList[index].count + 1;
-                                                   UpdateCart(cartList[index].count.toString(),cartList[index].id);
-                                                   setState(() {});
-                                                 },
-                                                 icon: Icon(CupertinoIcons.plus),
-                                                 iconSize: 17,
-                                               )),
-                                           Container(
-                                               margin: EdgeInsets.symmetric(
-                                                   horizontal: 10),
-                                               child: Text(
-                                                 cartList[index].count.toString(),
-                                                 style: TextStyle(
-                                                     fontSize: 18,
-                                                     fontWeight: FontWeight.bold,
-                                                     color: Colors.black),
-                                               )),
-                                           Container(
-                                               decoration: BoxDecoration(
-                                                   color: Colors.white,
-                                                   borderRadius:
-                                                   BorderRadius.circular(20),
-                                                   boxShadow: [
-                                                     BoxShadow(
-                                                         color: Colors.grey
-                                                             .withOpacity(0.5),
-                                                         spreadRadius: 1,
-                                                         blurRadius: 5)
-                                                   ]),
-                                               child: IconButton(
-                                                 onPressed: () {
-                                                   if (cartList[index].count !=
-                                                       1) {
-                                                     cartList[index].count =
-                                                         cartList[index].count - 1;
-                                                     UpdateCart(cartList[index].count.toString(),cartList[index].id);
-                                                   } else {
-                                                     deleteCart(cartList[index].id);
-                                                     cartList.removeAt(index);
-                                                   }
-                                                   setState(() {
-                                                   });
-                                                 },
-                                                 icon: Icon(CupertinoIcons.minus),
-                                                 iconSize: 17,
-                                               )),
-                                         ],
-                                       )
-
-
-                                 ],
-                               ) ,
-                             )
-
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 5),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      deleteCart(cartList[index].id);
+                                      cartList.removeAt(index);
+                                      setState(() {});
+                                    },
+                                    icon: Icon(Icons.delete),
+                                    color: Colors.grey,
+                                    iconSize: 25,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 1,
+                                                    blurRadius: 5)
+                                              ]),
+                                          child: IconButton(
+                                            onPressed: () {
+                                              cartList[index].count =
+                                                  cartList[index].count + 1;
+                                              UpdateCart(
+                                                  cartList[index]
+                                                      .count
+                                                      .toString(),
+                                                  cartList[index].id);
+                                              setState(() {});
+                                            },
+                                            icon: Icon(CupertinoIcons.plus),
+                                            iconSize: 17,
+                                          )),
+                                      Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: Text(
+                                            cartList[index].count.toString(),
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black),
+                                          )),
+                                      Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 1,
+                                                    blurRadius: 5)
+                                              ]),
+                                          child: IconButton(
+                                            onPressed: () {
+                                              if (cartList[index].count != 1) {
+                                                cartList[index].count =
+                                                    cartList[index].count - 1;
+                                                UpdateCart(
+                                                    cartList[index]
+                                                        .count
+                                                        .toString(),
+                                                    cartList[index].id);
+                                              } else {
+                                                deleteCart(cartList[index].id);
+                                                cartList.removeAt(index);
+                                              }
+                                              setState(() {});
+                                            },
+                                            icon: Icon(CupertinoIcons.minus),
+                                            iconSize: 17,
+                                          )),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
                           ],
                         ));
                   }),
@@ -228,7 +230,8 @@ class CartPageState extends State<CartPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MapScreen(totalPrice)),
+                  MaterialPageRoute(
+                      builder: (context) => MapScreen(totalPrice)),
                 );
               },
               child: Text(
@@ -274,17 +277,13 @@ class CartPageState extends State<CartPage> {
     }
     final response = await http.post(
         Uri.parse("${ConstantValue.URL}deleteCart.php"),
-        body: {
-          "Id":id,
-          "Id_users": userId
-
-        });
+        body: {"Id": id, "Id_users": userId});
     if (response.statusCode == 200) {
       return (jsonDecode(response.body));
     }
   }
 
-  Future UpdateCart(String Count,String Id) async {
+  Future UpdateCart(String Count, String Id) async {
     final prefs = await SharedPreferences.getInstance();
     String userId = prefs.getString(ConstantValue.ID) ?? "";
     if (userId == "") {
@@ -295,15 +294,10 @@ class CartPageState extends State<CartPage> {
     }
     final response = await http.post(
         Uri.parse("${ConstantValue.URL}UpdateCart.php"),
-        body: {
-          "Count":Count,
-          "Id":Id,
-          "Id_users": userId
-        });
+        body: {"Count": Count, "Id": Id, "Id_users": userId});
 
     if (response.statusCode == 200) {
       return (jsonDecode(response.body));
     }
   }
-
 }

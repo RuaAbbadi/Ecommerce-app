@@ -164,7 +164,7 @@ class MapScreenState extends State<MapScreen> {
                               builder: (BuildContext context) =>
                               MyOrderPage()));
                     },
-                    child: Text("OK"),
+                    child: Text("OK",style: TextStyle(color: Color(0xFFF7941F)),),
                   )
                 ],
               );

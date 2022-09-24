@@ -142,6 +142,7 @@ class OrdersPageState extends State<OrdersPage> {
               onPressed: () async{
                 deleteOrders();
                 deleteOrder();
+
                 Navigator.pop(context);
               },
               child: Text(

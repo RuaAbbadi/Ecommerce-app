@@ -43,7 +43,6 @@ class DetailsState extends State<Details> {
     // TODO: implement initState
     super.initState();
     getItemImages();
-    AddToCart(id);
   }
 
   @override
@@ -133,8 +132,9 @@ class DetailsState extends State<Details> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   actions: [
-                    ElevatedButton(
+                    TextButton(
                       onPressed: () {
+                        AddToCart(id);
                         Navigator.pop(context);
                         Navigator.push(
                           context,
@@ -142,15 +142,14 @@ class DetailsState extends State<Details> {
                               builder: (context) => CartPage(false)),
                         );
                       },
-                      child: Text("View Cart"),
+                      child: Text("View Cart" ,style: TextStyle(color: Color(0xFFF7941F)),),
                     ),
-                    ElevatedButton(
+                    TextButton(
                         onPressed: () {
-                          AddToCart(id);
                           Navigator.pop(context);
                           Navigator.pop(context);
                         },
-                        child: Text("Continue Shopping"))
+                        child: Text("Continue Shopping",style: TextStyle(color:Color(0xFFF7941F)),))
                   ],
                 );
               });

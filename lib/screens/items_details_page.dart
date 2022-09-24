@@ -16,6 +16,7 @@ class Details extends StatefulWidget {
   var price;
   var decription;
 
+
   Details(this.id, this.name, this.price, this.decription);
 
   @override
@@ -42,6 +43,7 @@ class DetailsState extends State<Details> {
     // TODO: implement initState
     super.initState();
     getItemImages();
+    AddToCart(id);
   }
 
   @override
@@ -144,7 +146,7 @@ class DetailsState extends State<Details> {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          AddToCart();
+                          AddToCart(id);
                           Navigator.pop(context);
                           Navigator.pop(context);
                         },
@@ -186,7 +188,7 @@ class DetailsState extends State<Details> {
     setState(() {});
   }
 
-  Future AddToCart() async {
+  Future AddToCart(String id) async {
     final prefs = await SharedPreferences.getInstance();
     String userId = prefs.getString(ConstantValue.ID) ?? "";
     if (userId == "") {

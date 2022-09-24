@@ -102,14 +102,11 @@ class MyOrderPageState extends State<MyOrderPage> {
                                   ),
                                   SizedBox(height: 15),
                                   TextButton(
-                                      onPressed: ()async{
-                                    String refresh= await Navigator.push(
+                                      onPressed: (){
+                                    Navigator.push(
                                           context,
                                           MaterialPageRoute(builder: (context) => OrdersPage(ordersList[index].Id)),
                                         );
-                                    if(refresh=='refresh'){
-                                      GetOrder();
-                                    }
                                       },
                                       child:Text("More Details",
                                         style: TextStyle(

@@ -153,8 +153,8 @@ class MapScreenState extends State<MapScreen> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("Your Order is ready"),
-                content: Text(jsonBody['msg']),
+                title: Text("Your Order is on the way"),
+                content: Text("Thank You"),
                 actions: [
                   TextButton(
                     onPressed: () {

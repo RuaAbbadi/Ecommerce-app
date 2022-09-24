@@ -142,7 +142,7 @@ class OrdersPageState extends State<OrdersPage> {
               onPressed: () async{
                 deleteOrders();
                 deleteOrder();
-                Navigator.pop(context,'refresh');
+                Navigator.pop(context);
               },
               child: Text(
                 "Delete",

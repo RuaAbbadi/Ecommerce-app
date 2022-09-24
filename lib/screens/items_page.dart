@@ -27,8 +27,7 @@ class ItemsState extends State<Items> {
 
   ItemsState(this.catId, this.catName);
 
-  List<ItemsModel> itemsList = [
-  ];
+  List<ItemsModel> itemsList = [];
 
   @override
   void initState() {
@@ -40,7 +39,10 @@ class ItemsState extends State<Items> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(catName), backgroundColor: Color(0xFFF7941F),),
+        appBar: AppBar(
+          title: Text(catName),
+          backgroundColor: Color(0xFFF7941F),
+        ),
         body: ListView.builder(
             padding: EdgeInsets.all(10.0),
             itemCount: itemsList.length,
@@ -51,12 +53,11 @@ class ItemsState extends State<Items> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            Details(
-                                itemsList[index].id,
-                                itemsList[index].name,
-                                itemsList[index].price,
-                                itemsList[index].description)),
+                        builder: (context) => Details(
+                            itemsList[index].id,
+                            itemsList[index].name,
+                            itemsList[index].price,
+                            itemsList[index].description)),
                   );
                 },
                 child: Column(
@@ -78,15 +79,15 @@ class ItemsState extends State<Items> {
                                 style: TextStyle(
                                     fontSize: 22.0,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    fontWeight: FontWeight.bold),
                               )),
-                          Text('\$$price',
+                          Text(
+                            '\$$price',
                             style: TextStyle(
                                 fontSize: 15.0,
                                 color: Color(0xFF575E67),
-                                fontWeight: FontWeight.bold
-                            ),)
+                                fontWeight: FontWeight.bold),
+                          )
                         ],
                       ),
                     )
@@ -95,30 +96,20 @@ class ItemsState extends State<Items> {
               );
             }));
   }
+
   Future GetItems() async {
-      final response = await http.post(
+    final response = await http.post(
         Uri.parse("${ConstantValue.URL}GetItems.php"),
-        body: {
-          "Id_categories":catId
-        }
-      );
-      if (response.statusCode == 200) {
-        var jsonBody = jsonDecode(response.body);
-        var items = jsonBody['items'];
+        body: {"Id_categories": catId});
+    if (response.statusCode == 200) {
+      var jsonBody = jsonDecode(response.body);
+      var items = jsonBody['items'];
 
-        for (Map i in items) {
-          itemsList.add(ItemsModel(
-              i["Id"], i["Name"], i["HomeImage"], i["Price"], i["Des"]
-          ));
-        }
-        setState(() {
-        });
+      for (Map i in items) {
+        itemsList.add(ItemsModel(
+            i["Id"], i["Name"], i["HomeImage"], i["Price"], i["Des"]));
       }
-
-
-
-
+      setState(() {});
+    }
   }
-
 }
-

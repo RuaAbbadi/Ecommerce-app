@@ -59,17 +59,18 @@ class MoreScreenState extends State<MoreScreen> {
                 Column(
                   children: [
                     Text(
-                      '$name',
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xFF575E67)),
-                    ),
+                        '$name',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xFF575E67)),
+                      ),
+
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "4 Orders",
+                      "$email",
                       style: TextStyle(fontSize: 15, color: Colors.grey),
                     ),
                   ],

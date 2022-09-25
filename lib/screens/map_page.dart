@@ -77,7 +77,7 @@ class MapScreenState extends State<MapScreen> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: (MediaQuery.of(context).size.height * .15) - 40.0,
+        height: (MediaQuery.of(context).size.height * .15) - 60.0,
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20.0),
         decoration: BoxDecoration(
@@ -86,7 +86,6 @@ class MapScreenState extends State<MapScreen> {
         ),
         child: TextButton(
             onPressed: () async {
-              deleteCart();
               Position postiton = await _determinePosition();
               AddOrder(postiton.longitude, postiton.latitude);
             },

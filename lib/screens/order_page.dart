@@ -100,7 +100,7 @@ class MyOrderPageState extends State<MyOrderPage> {
                                         color: Colors.black,
                                       ),
                                     ),
-                                    SizedBox(height: 15),
+                                    SizedBox(height: 9),
                                     TextButton(
                                         onPressed: (){
                                           Navigator.push(

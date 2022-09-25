@@ -152,10 +152,6 @@ class ProfilePageState extends State<ProfilePage> {
                             }
                             else {
                               UpdateProfile(Id);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Login()),
-                              );
                             }
                             setState(() {
                             });
@@ -233,7 +229,31 @@ class ProfilePageState extends State<ProfilePage> {
         });
 
     if (response.statusCode == 200) {
-      return (jsonDecode(response.body));
+      var jsonBody = jsonDecode(response.body);
+      var result = jsonBody['result'];
+      if (result) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Please Login again"),
+                content: Text("Thank You"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  Login()));
+                    },
+                    child: Text("OK",style: TextStyle(color: Color(0xFF0B47A9)),),
+                  )
+                ],
+              );
+            });
+      }
 
     }
   }

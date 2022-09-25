@@ -41,7 +41,7 @@ class ItemsState extends State<Items> {
     return Scaffold(
         appBar: AppBar(
           title: Text(catName),
-          backgroundColor: Color(0xFFF7941F),
+          backgroundColor: Color(0xFF0B47A9),
         ),
         body: ListView.builder(
             padding: EdgeInsets.all(10.0),
@@ -78,7 +78,7 @@ class ItemsState extends State<Items> {
                                 itemsList[index].name,
                                 style: TextStyle(
                                     fontSize: 22.0,
-                                    color: Colors.black,
+                                    color: Color(0xFF0B47A9),
                                     fontWeight: FontWeight.bold),
                               )),
                           Text(

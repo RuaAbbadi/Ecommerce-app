@@ -48,7 +48,7 @@ class DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xFFF7941F)),
+      appBar: AppBar(backgroundColor: Color(0xFF0B47A9)),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -80,7 +80,7 @@ class DetailsState extends State<Details> {
                 fontSize: 22.0,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Varela',
-                color: Color(0xFFF7941F),
+                color: Color(0xFF0B47A9),
               ),
             ),
             SizedBox(height: 10.0),
@@ -142,14 +142,14 @@ class DetailsState extends State<Details> {
                               builder: (context) => CartPage(false)),
                         );
                       },
-                      child: Text("View Cart" ,style: TextStyle(color: Color(0xFFF7941F)),),
+                      child: Text("View Cart" ,style: TextStyle(color: Color(0xFF0B47A9)),),
                     ),
                     TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.pop(context);
                         },
-                        child: Text("Continue Shopping",style: TextStyle(color:Color(0xFFF7941F)),))
+                        child: Text("Continue Shopping",style: TextStyle(color:Color(0xFF0B47A9)),))
                   ],
                 );
               });
@@ -159,7 +159,7 @@ class DetailsState extends State<Details> {
             height: 50.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Color(0xFFF7941F),
+              color: Color(0xFF0B47A9),
             ),
             margin: EdgeInsets.symmetric(vertical: 20.0),
             child: Center(

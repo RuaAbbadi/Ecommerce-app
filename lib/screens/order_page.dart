@@ -33,7 +33,7 @@ class MyOrderPageState extends State<MyOrderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFFF7941F),
+          backgroundColor: Color(0xFF0B47A9),
         ),
         body: SingleChildScrollView(
           child:Column(
@@ -85,7 +85,7 @@ class MyOrderPageState extends State<MyOrderPage> {
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w700,
-                                        color: Color(0xFFF7941F),
+                                        color: Color(0xFF0B47A9),
                                       ),
                                     ),
                                   ],

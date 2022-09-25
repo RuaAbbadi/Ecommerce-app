@@ -32,7 +32,7 @@ class LoginState extends State<Login> {
         children: [
           Center(
               child: (Image.asset(
-            "images/logo.png",
+            "images/login.png",
             width: 250,
             height: 250,
           ))),
@@ -100,7 +100,7 @@ class LoginState extends State<Login> {
                         },
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Color(0xFFF7941F)),
+                              MaterialStateProperty.all(Color(0xFF0B47A9)),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),

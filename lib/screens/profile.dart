@@ -50,7 +50,7 @@ class ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFF7941F),
+        backgroundColor: Color(0xFF0B47A9),
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -138,7 +138,7 @@ class ProfilePageState extends State<ProfilePage> {
                       height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
-                        color: Color(0xFFF7941F),
+                        color: Color(0xFF0B47A9),
                       ),
                       margin: EdgeInsets.symmetric( vertical: 20.0),
                       child: TextButton(
@@ -161,7 +161,7 @@ class ProfilePageState extends State<ProfilePage> {
                             });
                           },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Color(0xFFF7941F)),
+                            backgroundColor: MaterialStateProperty.all(Color(0xFF0B47A9)),
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0),
@@ -183,10 +183,10 @@ class ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.symmetric( vertical: 20.0),
                       child: TextButton(
                           onPressed: (){
-                             Navigator.pop(context);
-                            },
+                            Navigator.pop(context);
+                          },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Color(0xFFF7941F)),
+                            backgroundColor: MaterialStateProperty.all(Color(0xFF0B47A9)),
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0),

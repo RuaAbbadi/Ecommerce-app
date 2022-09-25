@@ -41,7 +41,7 @@ class MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFF7941F),
+        backgroundColor: Color(0xFF0B47A9),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -82,10 +82,11 @@ class MapScreenState extends State<MapScreen> {
         margin: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: Color(0xFFF7941F),
+          color: Color(0xFF0B47A9),
         ),
         child: TextButton(
             onPressed: () async {
+              deleteCart();
               Position postiton = await _determinePosition();
               AddOrder(postiton.longitude, postiton.latitude);
             },
@@ -159,17 +160,35 @@ class MapScreenState extends State<MapScreen> {
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
+                      Navigator.pop(context);
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
                               MyOrderPage()));
                     },
-                    child: Text("OK",style: TextStyle(color: Color(0xFFF7941F)),),
+                    child: Text("OK",style: TextStyle(color: Color(0xFF0B47A9)),),
                   )
                 ],
               );
             });
       }
+    }
+  }
+
+  Future deleteCart() async {
+    final prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString(ConstantValue.ID) ?? "";
+    if (userId == "") {
+      Timer(
+          Duration(seconds: 3),
+              () => Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (BuildContext context) => Login())));
+    }
+    final response = await http.post(
+        Uri.parse("${ConstantValue.URL}deleteCart.php"),
+        body: {"Id_users": userId});
+    if (response.statusCode == 200) {
+      return (jsonDecode(response.body));
     }
   }
 }

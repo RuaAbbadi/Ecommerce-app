@@ -43,7 +43,7 @@ class CartPageState extends State<CartPage> {
       totalPrice = totalPrice + (cartList[x].price * cartList[x].count);
     }
     return Scaffold(
-        appBar: fromMain ? null : AppBar(backgroundColor: Color(0xFFF7941F)),
+        appBar: fromMain ? null : AppBar(backgroundColor: Color(0xFF0B47A9)),
         body: Column(
           children: [
             Container(
@@ -223,7 +223,7 @@ class CartPageState extends State<CartPage> {
             height: 45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Color(0xFFF7941F),
+              color: Color(0xFF0B47A9),
             ),
             margin: EdgeInsets.symmetric(horizontal: 23.0, vertical: 10.0),
             child: TextButton(

@@ -94,29 +94,29 @@ class MoreScreenState extends State<MoreScreen> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: TextButton(
-                   onPressed: ()async {
-                    Navigator.push(
+                      onPressed: ()async {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => ProfilePage(Id,name,email,phone)),
                         );
-                     setState(() {});
+                        setState(() {});
                       },
                       child: Text(
                         "Profile",
                         style:
-                            TextStyle(fontSize: 20, color: Color(0xFF575E67)),
+                        TextStyle(fontSize: 20, color: Color(0xFF575E67)),
                       )),
                 ),
                 TextButton(
                     onPressed: ()async {
-                     await Navigator.push(
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => MyOrderPage()),
                       );
                     },
                     child: Text("Orders",
                         style:
-                            TextStyle(fontSize: 20, color: Color(0xFF575E67)))),
+                        TextStyle(fontSize: 20, color: Color(0xFF575E67)))),
               ],
             ),
           ),
@@ -130,7 +130,7 @@ class MoreScreenState extends State<MoreScreen> {
                     height: 45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      color: Color(0xFFF7941F),
+                      color: Color(0xFF0B47A9),
                     ),
                     margin: EdgeInsets.symmetric( vertical: 20.0),
                     child: TextButton(
@@ -160,7 +160,7 @@ class MoreScreenState extends State<MoreScreen> {
     if (Id == "" && Email == ""  && Name == "" && Phone == "") {
       Timer(
           Duration(seconds: 3),
-          () => Navigator.of(context).pushReplacement(
+              () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (BuildContext context) => Splash())));
     }
   }
@@ -172,12 +172,12 @@ class MoreScreenState extends State<MoreScreen> {
     String userEmail = prefs.getString(ConstantValue.Email) ?? "";
     String userPhone= prefs.getString(ConstantValue.Phone) ?? "";
     setState(() {
-        Id=userId;
-        name = userName;
-        email=userEmail;
-        phone=userPhone;
+      Id=userId;
+      name = userName;
+      email=userEmail;
+      phone=userPhone;
 
-      });
+    });
 
   }
 }

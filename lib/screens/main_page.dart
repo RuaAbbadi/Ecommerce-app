@@ -20,7 +20,7 @@ class MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFF7941F),
+        backgroundColor: Color(0xFF0B47A9),
       ),
       body: _widget,
       bottomNavigationBar: BottomNavigationBar(

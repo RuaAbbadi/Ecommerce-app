@@ -58,7 +58,7 @@ class CartPageState extends State<CartPage> {
                     return Container(
                         height: 130,
                         margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -73,8 +73,6 @@ class CartPageState extends State<CartPage> {
                         child: Row(
                           children: [
                             Container(
-                              height: 130,
-                              width: 130,
                               margin: EdgeInsets.only(right: 15),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),

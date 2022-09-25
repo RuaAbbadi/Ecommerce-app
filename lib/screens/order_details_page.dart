@@ -69,8 +69,6 @@ class OrdersPageState extends State<OrdersPage> {
                             child: Row(
                               children: [
                                 Container(
-                                  height: 130,
-                                  width: 130,
                                   margin: EdgeInsets.only(right: 15),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),

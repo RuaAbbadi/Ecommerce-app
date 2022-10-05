@@ -136,8 +136,8 @@ class MapScreenState extends State<MapScreen> {
           () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (BuildContext context) => Login())));
     }
-    final response =
-        await http.post(Uri.parse("${ConstantValue.URL}AddOrder.php"), body: {
+    final response = await http.post(Uri.parse("${ConstantValue.URL}AddOrder.php"),
+        body: {
       "Longitude": lng.toString(),
       "Latitude": lat.toString(),
       "Note": noteTextEditingController.text,

@@ -67,7 +67,7 @@ class DetailsState extends State<Details> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.network(
-                          ImageList[index].image,
+                          ConstantValue.URL + ImageList[index].image,
                           fit: BoxFit.fill,
                         ),
                       ),

@@ -38,7 +38,7 @@ class MainScreenState extends State<MainScreen> {
 
   void onTap(int x) {
     currentIndex = x;
-    if (currentIndex == 0) {
+    if(currentIndex == 0) {
       _widget = Home();
     } else if (currentIndex == 1) {
       _widget =CartPage(true);

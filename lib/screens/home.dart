@@ -18,6 +18,7 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+
   List<Categories> catList = [
 
   ];
@@ -36,81 +37,83 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        body: Column(
-          children: [
-            Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * .25,
-              child: ListView.builder(
-                  itemCount: ImageList.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        Container(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
-                          padding: const EdgeInsets.all(5.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              ImageList[index].image,
-                              fit: BoxFit.fill,
+          body: Column(
+            children: [
+              Container(
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * .25,
+                child: ListView.builder(
+                    itemCount: ImageList.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          Container(
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            padding: const EdgeInsets.all(5.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                ConstantValue.URL+ ImageList[index].image,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
+                        ],
+                      );
+                    }),
+              ),
+              Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 30, left: 20.0, right: 20.0),
+                    child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1,
+                          crossAxisSpacing: 15.0,
                         ),
-                      ],
-                    );
-                  }),
-            ),
-            Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 30, left: 20.0, right: 20.0),
-                  child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.2,
-                        crossAxisSpacing: 15.0,
-                      ),
-                      itemCount: catList.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        Items(catList[index].id,
-                                            catList[index].name)),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    catList[index].image,
+                        itemCount: catList.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Items(catList[index].id,
+                                              catList[index].name)),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                     ConstantValue.URL+ catList[index].image,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    catList[index].name,
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  margin: EdgeInsets.only(top: 10.0),
-                                )
-                              ],
-                            ));
-                      }),
-                )),
-          ],
-        ));
+                                  Container(
+                                    child: Text(
+                                      catList[index].name,
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    margin: EdgeInsets.only(top: 10.0),
+                                  )
+                                ],
+                              ));
+                        }),
+                  )),
+            ],
+          ));
+
   }
 
   Future GetGategories() async {

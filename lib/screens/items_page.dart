@@ -65,7 +65,7 @@ class ItemsState extends State<Items> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        itemsList[index].Image,
+                        ConstantValue.URL + itemsList[index].Image,
                       ),
                     ),
                     Container(

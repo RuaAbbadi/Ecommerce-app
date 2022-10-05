@@ -73,7 +73,7 @@ class OrdersPageState extends State<OrdersPage> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),
                                     child: Image.network(
-                                      orderList[index].image,
+                                      ConstantValue.URL + orderList[index].image,
                                     ),
                                   ),
                                 ),
